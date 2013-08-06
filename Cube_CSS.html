@@ -6,13 +6,15 @@
 </head>
 <body>
 
-<div class="cube0">
-	<div class="cube1">1</div>
-	<div class="cube2">2</div>
-	<div class="cube3">3</div>
-	<div class="cube4">4</div>
-	<div class="cube5">5</div>
-	<div class="cube6">6</div>
+<div class="scene">
+	<div class="cube0">
+		<div class="cube1">1</div>
+		<div class="cube2">2</div>
+		<div class="cube3">3</div>
+		<div class="cube4">4</div>
+		<div class="cube5">5</div>
+		<div class="cube6">6</div>
+	</div>
 </div>
 
 <script>
@@ -27,17 +29,21 @@
 </script>
 
 <style>
+	div.scene {
+		-webkit-perspective: 500px;		/* 在場景層設定景深(單點透式點) 記得要把物件移動到中心否則會變形 */
+		width: 300px;
+		height: 300px;					/* 三百才會剛好讓 Cube 在場中間 */
+		border: 5px solid #303030;
+		background-color: lightgrey;
+	}
+
 	div.cube0 {
 		left: 100px;
 		top: 100px;
 		width: 100px;			/*長寬一定要設定，不然透式點計算會有問題*/
 		height: 100px;
 		position: relative;
-		-webkit-transform-style: preserve-3d;			/* 要下這個 3d Rotate 才有意義(通常下載 Container ) */
-		/*
-		-webkit-perspective: 1000px;
-		-webkit-transform: rotateX(60deg) rotateZ(60deg);
-		*/ /* 這 -webkit-perspective 屬性只有在畫靜物透式點畫法才有用 */
+		-webkit-transform-style: preserve-3d;				/* 要下這個 3d Rotate 才有意義(通常下載 Container ) 代表這個結點(含以內)為 3D CSS 矩陣 */
 	}
 
 	div.cube1 {
@@ -47,7 +53,7 @@
 		height: 100px;
 		background-color: silver;
 		position: absolute;
-		opacity: 0.6;
+		opacity: 0.4;
 		line-height: 100px;
 		text-align: center;
 		-webkit-transform-style: preserve-3d;
@@ -60,7 +66,7 @@
 		height: 100px;
 		background-color: green;
 		position: absolute;
-		opacity: 0.6;
+		opacity: 0.4;
 		line-height: 100px;
 		text-align: center;
 	}
@@ -71,7 +77,7 @@
 		height: 100px;
 		background-color: blue;
 		position: absolute;
-		opacity: 0.6;
+		opacity: 0.4;
 		line-height: 100px;
 		text-align: center;
 	}
@@ -82,7 +88,7 @@
 		height: 100px;
 		background-color: gold;
 		position: absolute;
-		opacity: 0.6;
+		opacity: 0.4;
 		line-height: 100px;
 		text-align: center;
 	}
@@ -93,7 +99,7 @@
 		height: 100px;
 		background-color: brown;
 		position: absolute;
-		opacity: 0.6;
+		opacity: 0.4;
 		line-height: 100px;
 		text-align: center;
 	}
@@ -104,7 +110,7 @@
 		height: 100px;
 		background-color: red;
 		position: absolute;
-		opacity: 0.6;
+		opacity: 0.4;
 		line-height: 100px;
 		text-align: center;
 	}
