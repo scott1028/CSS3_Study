@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<title>Cube CSS</title>
+</head>
+<body>
+
+<div class="cube0">
+	<div class="cube1">1</div>
+	<div class="cube2">2</div>
+	<div class="cube3">3</div>
+	<div class="cube4">4</div>
+	<div class="cube5">5</div>
+	<div class="cube6">6</div>
+</div>
+
+<script>
+	var deg=0;
+	setInterval(function(e){
+		$('div.cube0').css({
+			'-webkit-transform':'rotateY('+(deg-=1)+'deg) rotateX('+(deg+=1)+'deg) rotateZ('+(deg-=1)+'deg)'
+		});
+
+		if(deg>=360){ deg=0; }
+	},20)
+</script>
+
+<style>
+	div.cube0 {
+		left: 100px;
+		top: 100px;
+		width: 100px;			/*長寬一定要設定，不然透式點計算會有問題*/
+		height: 100px;
+		position: relative;
+		-webkit-transform-style: preserve-3d;			/* 要下這個 3d Rotate 才有意義(通常下載 Container ) */
+		/*
+		-webkit-perspective: 1000px;
+		-webkit-transform: rotateX(60deg) rotateZ(60deg);
+		*/ /* 這 -webkit-perspective 屬性只有在畫靜物透式點畫法才有用 */
+	}
+
+	div.cube1 {
+		-webkit-transform: translateZ( 50px ) rotateX(0deg);		/* CSS 因為的矩陣原點在圖形中心，所以個別移動寬度的1/2為 50*/
+		display: block;
+		width: 100px;
+		height: 100px;
+		background-color: silver;
+		position: absolute;
+		opacity: 0.6;
+		line-height: 100px;
+		text-align: center;
+		-webkit-transform-style: preserve-3d;
+	}
+
+	div.cube2 {
+		-webkit-transform: translateZ( -50px ) rotateX(180deg);
+		display: block;
+		width: 100px;
+		height: 100px;
+		background-color: green;
+		position: absolute;
+		opacity: 0.6;
+		line-height: 100px;
+		text-align: center;
+	}
+	div.cube3 {
+		-webkit-transform: translateY( 50px ) rotateX(-90deg);
+		display: block;
+		width: 100px;
+		height: 100px;
+		background-color: blue;
+		position: absolute;
+		opacity: 0.6;
+		line-height: 100px;
+		text-align: center;
+	}
+	div.cube4 {
+		-webkit-transform: translateY( -50px ) rotateX(90deg);
+		display: block;
+		width: 100px;
+		height: 100px;
+		background-color: gold;
+		position: absolute;
+		opacity: 0.6;
+		line-height: 100px;
+		text-align: center;
+	}
+	div.cube5 {
+		-webkit-transform: translateX( 50px ) rotateY(-90deg);
+		display: block;
+		width: 100px;
+		height: 100px;
+		background-color: brown;
+		position: absolute;
+		opacity: 0.6;
+		line-height: 100px;
+		text-align: center;
+	}
+	div.cube6 {
+		-webkit-transform: translateX( -50px ) rotateY(90deg);
+		display: block;
+		width: 100px;
+		height: 100px;
+		background-color: red;
+		position: absolute;
+		opacity: 0.6;
+		line-height: 100px;
+		text-align: center;
+	}
+
+
+</style>
+
+</body>
+</html>
