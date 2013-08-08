@@ -82,20 +82,22 @@
 	</style>
 
 	<script>
-		var tick=function(){
+		var tick=function(x,y){
+			var x=x || tick.angulur;
+			var y=y || tick.angulur;
 			$('div#scene div#cube').css({
-				'-webkit-transform':'rotateX('+tick.angulur+'deg) rotateY('+tick.angulur+'deg)'
+				'-webkit-transform':'rotateX('+x+'deg) rotateY('+y+'deg)'
 			});
 			tick.angulur+=5;
 			tick.angulur>=360 ? tick.angulur=tick.angulur%360 : undefined;
 		};tick.angulur=40;
 
 		createjs.Ticker.addEventListener('tick',function(e){
-		   tick();
+		   //tick();
 		});
 
 		var t=$('div#scene div#cube div');
-		$('<img src="2.png" style="width:100%;height:100%;position: absolute;left:0px;" />').appendTo(t); /* 似乎是一個 bug 需要重新設定 left: 0px */
+		$('<img src="2.png" style="width:100%;height:100%;position: absolute;left:0px;" draggable=false />').appendTo(t); /* 似乎是一個 bug 需要重新設定 left: 0px */
 	</script>
 
 
@@ -104,6 +106,30 @@
 		//new createjs.Bitmap("/Template/gateway_pic/2.png")
 		var background = new createjs.Bitmap("2.png");
 		var stage = new createjs.Stage("demo");
+	</script>
+
+	<script type="text/javascript">
+		// 手動旋轉
+		$('#cube').mousedown(function(e){
+			var s_pos=[e.screenX,e.screenY];
+			$(document).mousemove(function(ee){
+				var e_pos=[ee.screenX,ee.screenY];
+
+				// Y軸的旋轉力量
+				y_deg_v=e_pos[0]-s_pos[0];
+
+				// X軸的旋轉力量
+				x_deg_v=s_pos[1]-e_pos[1];
+
+				// 除 10 讓旋轉的弧度小一點(看起來轉比較慢)
+				tick(x_deg_v,y_deg_v);
+
+			});
+
+			$(document).mouseup(function(ee2){
+				$(document).unbind('mousemove');
+			});
+		});
 	</script>
 </body>
 </html>
