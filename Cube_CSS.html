@@ -27,55 +27,56 @@
 		}
 
 		div#scene div#cube {
-			left: 250px;
-			top: 250px;
+			left: 200px;
+			top: 200px;
 			-webkit-transform-style: preserve-3d;
 			-webkit-transform: rotateY(15deg) rotateX(-15deg);
 			position: relative;
 			display:block;
-			width:100px;
-			height:100px;
+			width:200px;
+			height:200px;
 		}
 
 		div#scene div#cube div {
 			background-color: green;
 			opacity: 0.5;
 			display: block;
-			width: 100px;
-			height: 100px;
+			width: 200px;
+			height: 200px;
 			position: absolute;
-			line-height: 100px;
+			line-height: 200px;
 			text-align: center;
 			border: 1px solid #303030;
 		}
 
 		div#scene div#cube div.top {
-			-webkit-transform:translateY(-50px) rotateX(90deg);	/* 要先平移在旋轉否則選轉後的平移位置要計算過 */
+			-webkit-transform:translateY(-100px) rotateX(90deg);     /* 要先平移在旋轉否則選轉後的平移位置要計算過 */
 			background-color: green;
 		}
 
 		div#scene div#cube div.bottom {
-			-webkit-transform:translateY(50px) rotateX(-90deg);
+			-webkit-transform:translateY(100px) rotateX(-90deg);
 			background-color: yellow;
 		}
 
 		div#scene div#cube div.left {
-			-webkit-transform:translateX(-50px) rotateY(-90deg);
+			-webkit-transform:translateX(-100px) rotateY(-90deg);
 			background-color: blue;
 		}
 
 		div#scene div#cube div.right {
-			-webkit-transform:translateX(50px) rotateY(90deg);
+			-webkit-transform:translateX(100px) rotateY(90deg);
 			background-color: brown;
 		}
 
 		div#scene div#cube div.front {
-			-webkit-transform:translateZ(50px);
+			-webkit-transform:translateZ(100px);
 			background-color: darkorchid;
+			background-repeat: no-repeat;
 		}
 
 		div#scene div#cube div.back {
-			-webkit-transform:translateZ(-50px);
+			-webkit-transform:translateZ(-100px);
 			background-color: orchid;
 		}
 	</style>
@@ -92,6 +93,9 @@
 		createjs.Ticker.addEventListener('tick',function(e){
 		   tick();
 		});
+
+		var t=$('div#scene div#cube div');
+		$('<img src="2.png" style="width:100%;height:100%;position: absolute;left:0px;" />').appendTo(t); /* 似乎是一個 bug 需要重新設定 left: 0px */
 	</script>
 
 
