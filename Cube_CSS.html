@@ -1,122 +1,105 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-	<title>Cube CSS</title>
+	<title></title>
+	<script type="text/javascript" src="http://code.createjs.com/createjs-2013.05.14.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 </head>
 <body>
-
-<div class="scene">
-	<div class="cube0">
-		<div class="cube1">1</div>
-		<div class="cube2">2</div>
-		<div class="cube3">3</div>
-		<div class="cube4">4</div>
-		<div class="cube5">5</div>
-		<div class="cube6">6</div>
+	<div id="scene">
+		<div id="cube">
+			<div class="top">1</div>
+			<div class="bottom">3</div>
+			<div class="left">5</div>
+			<div class="right">6</div>
+			<div class="front">2</div>
+			<div class="back">4</div>
+		</div>
 	</div>
-</div>
 
-<script>
-	var deg=0;
-	setInterval(function(e){
-		$('div.cube0').css({
-			'-webkit-transform':'rotateY('+(deg-=1)+'deg) rotateX('+(deg+=1)+'deg) rotateZ('+(deg-=1)+'deg)'
+	<style type="text/css">
+		div#scene {
+			display: block;
+			width: 600px;
+			height: 600px;
+			background-color: silver;
+			-webkit-perspective: 1000px;
+		}
+
+		div#scene div#cube {
+			left: 250px;
+			top: 250px;
+			-webkit-transform-style: preserve-3d;
+			-webkit-transform: rotateY(15deg) rotateX(-15deg);
+			position: relative;
+			display:block;
+			width:100px;
+			height:100px;
+		}
+
+		div#scene div#cube div {
+			background-color: green;
+			opacity: 0.5;
+			display: block;
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			line-height: 100px;
+			text-align: center;
+			border: 1px solid #303030;
+		}
+
+		div#scene div#cube div.top {
+			-webkit-transform:translateY(-50px) rotateX(90deg);		/* 要先平移在旋轉否則選轉後的平移位置要計算過 */
+			background-color: green;
+		}
+
+		div#scene div#cube div.bottom {
+			-webkit-transform:translateY(50px) rotateX(-90deg);
+			background-color: yellow;
+		}
+
+		div#scene div#cube div.left {
+			-webkit-transform:translateX(-50px) rotateY(-90deg);
+			background-color: blue;
+		}
+
+		div#scene div#cube div.right {
+			-webkit-transform:translateX(50px) rotateY(90deg);
+			background-color: brown;
+		}
+
+		div#scene div#cube div.front {
+			-webkit-transform:translateZ(50px);
+			background-color: darkorchid;
+		}
+
+		div#scene div#cube div.back {
+			-webkit-transform:translateZ(-50px);
+			background-color: orchid;
+		}
+	</style>
+
+	<script>
+		var tick=function(){
+			$('div#scene div#cube').css({
+				'-webkit-transform':'rotateX('+tick.angulur+'deg) rotateY('+tick.angulur+'deg)'
+			});
+			tick.angulur+=5;
+			tick.angulur>=360 ? tick.angulur=tick.angulur%360 : undefined;
+		};tick.angulur=40;
+
+		createjs.Ticker.addEventListener('tick',function(e){
+		   tick();
 		});
-
-		if(deg>=360){ deg=0; }
-	},20)
-</script>
-
-<style>
-	div.scene {
-		-webkit-perspective: 500px;		/* 在場景層設定景深(單點透式點) 記得要把物件移動到中心否則會變形 */
-		width: 300px;
-		height: 300px;					/* 三百才會剛好讓 Cube 在場中間 */
-		border: 5px solid #303030;
-		background-color: lightgrey;
-	}
-
-	div.cube0 {
-		left: 100px;
-		top: 100px;
-		width: 100px;			/*長寬一定要設定，不然透式點計算會有問題*/
-		height: 100px;
-		position: relative;
-		-webkit-transform-style: preserve-3d;				/* 要下這個 3d Rotate 才有意義(通常下載 Container ) 代表這個結點(含以內)為 3D CSS 矩陣 */
-	}
-
-	div.cube1 {
-		-webkit-transform: translateZ( 50px ) rotateX(0deg);		/* CSS 因為的矩陣原點在圖形中心，所以個別移動寬度的1/2為 50*/
-		display: block;
-		width: 100px;
-		height: 100px;
-		background-color: silver;
-		position: absolute;
-		opacity: 0.4;
-		line-height: 100px;
-		text-align: center;
-		-webkit-transform-style: preserve-3d;
-	}
-
-	div.cube2 {
-		-webkit-transform: translateZ( -50px ) rotateX(180deg);
-		display: block;
-		width: 100px;
-		height: 100px;
-		background-color: green;
-		position: absolute;
-		opacity: 0.4;
-		line-height: 100px;
-		text-align: center;
-	}
-	div.cube3 {
-		-webkit-transform: translateY( 50px ) rotateX(-90deg);
-		display: block;
-		width: 100px;
-		height: 100px;
-		background-color: blue;
-		position: absolute;
-		opacity: 0.4;
-		line-height: 100px;
-		text-align: center;
-	}
-	div.cube4 {
-		-webkit-transform: translateY( -50px ) rotateX(90deg);
-		display: block;
-		width: 100px;
-		height: 100px;
-		background-color: gold;
-		position: absolute;
-		opacity: 0.4;
-		line-height: 100px;
-		text-align: center;
-	}
-	div.cube5 {
-		-webkit-transform: translateX( 50px ) rotateY(-90deg);
-		display: block;
-		width: 100px;
-		height: 100px;
-		background-color: brown;
-		position: absolute;
-		opacity: 0.4;
-		line-height: 100px;
-		text-align: center;
-	}
-	div.cube6 {
-		-webkit-transform: translateX( -50px ) rotateY(90deg);
-		display: block;
-		width: 100px;
-		height: 100px;
-		background-color: red;
-		position: absolute;
-		opacity: 0.4;
-		line-height: 100px;
-		text-align: center;
-	}
+	</script>
 
 
-</style>
-
+	<canvas id="demo" width="800" height=600></canvas>
+	<script type="text/javascript">
+		//new createjs.Bitmap("/Template/gateway_pic/2.png")
+		var background = new createjs.Bitmap("2.png");
+		var stage = new createjs.Stage("demo");
+	</script>
 </body>
 </html>
