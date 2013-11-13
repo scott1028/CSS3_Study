@@ -18,7 +18,7 @@
 	</div>
 
 	<style type="text/css">
-		/* 設定場景的透視距離 */
+		/* 設定場景的 Camera 為投影透並設定距離 */
 		div#scene {
 			display: block;
 			width: 600px;
@@ -27,7 +27,7 @@
 			-webkit-perspective: 1000px;
 		}
 
-		/* 設定元素的 Camera 方式 */
+		/* 此物件設定為 3D 物件 by -webkit-transform-style: preserve-3d */
 		div#scene div#cube {
 			left: 200px;
 			top: 200px;
