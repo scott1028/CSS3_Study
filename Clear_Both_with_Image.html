@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <!-- 展示 float & clear-both 的實際應用 -->
+    <div style="background-color: silver;">
+            <!-- parent widht, height 的 50% -->
+            <img src="2.png" style="float: right; width: 50%; height: 50%;">
+
+            <!-- 不需要內容將會把包含 float Element Container 高度啦寬到剛好 Float 物件的高度, 如果打了內容將會在換行一次 -->
+            <div style="clear: both; background-color: green;"></div>
+    </div>
+    <div>顯示在包含 float container的下一行</div>
+</body>
+</html>
